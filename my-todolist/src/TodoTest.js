@@ -2,35 +2,49 @@ import React from 'react';
 
 class TodoTest extends React.Component {
   render() {
-    const todoList = ["图雀", "图雀写作工具", "图雀社区", "图雀文档"];
-    return (
-      <ul>
-        <li>类组件 {this.props.content} - {todoList[0]}</li>
-      </ul>
+    //const todoList = ["图雀", "图雀写作工具", "图雀社区", "图雀文档"];
+    if (this.props.content === '图雀') return (
+      <li>类组件 {this.props.content}</li>
+    )
+    else return (
+      <li>类组件非图雀 {this.props.content}</li>
     )
   }
 }
 
+const todoList = ["图雀", "图雀写作工具", "图雀社区", "图雀文档"];
 class StateDemoTest extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      todoList: ["图雀", "图雀写作工具", "图雀社区", "图雀文档"]
+      todoList: [],
+      nowTodo: ''
     };
+
+    console.log(this.state);
+  }
+
+  componentDidMount() {
+    this.timer = setTimeout(() => {
+      this.setState({ todoList: todoList, nowTodo: 'Hello, 图雀' });
+    }, 2000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   render() {
     return (
-      <ul>
-        <li>{this.state.todoList[0]}</li>
-        <li>{this.state.todoList[1]}</li>
-        <li>{this.state.todoList[2]}</li>
-        <li>{this.state.todoList[3]}</li>
-      </ul>
+      <div>
+        <ul>
+          {this.state.todoList.map((todo, index) => <TodoTest content={todo} key={index} />)}
+        </ul>
+      </div>
     );
   }
 }
 
-export {TodoTest, StateDemoTest};
+export { TodoTest, StateDemoTest };

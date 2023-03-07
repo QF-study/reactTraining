@@ -4,17 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ToDo from './todo';
-import {TodoTest, StateDemoTest} from './TodoTest';
+import { StateDemoTest } from './TodoTest';
+import ButtonTest from './buttonTest';
+import Counter from './counter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <ButtonTest></ButtonTest>
     <ul>
       <ToDo content="函数式组件传参" from="多参数from"></ToDo>
-      <TodoTest content="类组件传参"></TodoTest>
+      {/* <TodoTest content="类组件传参"></TodoTest> */}
     </ul>
     <StateDemoTest></StateDemoTest>
+
+    <Counter></Counter>
   </React.StrictMode>
 );
 
